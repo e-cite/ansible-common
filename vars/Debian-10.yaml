@@ -7,7 +7,26 @@ common__default_packages:
   - sudo
   - ntp
   - unattended-upgrades
+  - apticron
   - vim
+  - less
+  - ssh
+  - iputils-ping
+  - dnsutils
+  - iftop
+  - iotop
+  - ethtool
+  - tcpdump
+  - curl
+  - wget
+  - rsyslog
+  - debian-goodies
+  - needrestart
+  - debsums
+  - fail2ban
+  - python
+  - python-apt
+  - screen
 
 # time.yaml
 common__default_ntpconf_file: "/etc/ntp.conf"
