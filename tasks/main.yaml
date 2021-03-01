@@ -1,6 +1,6 @@
 ---
-- { include: hostname.yml, become: yes }
-- { include: user.yml, become: yes }
-- { include: locales.yml, become: yes }
-- { include: time.yml, become: yes }
-- { include: unattended_upgrades.yml, become: yes }
+- include: hostname.yml
+- include: user.yml
+- include: locales.yml
+- include: time.yml
+- include: unattended_upgrades.yml
