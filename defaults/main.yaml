@@ -5,6 +5,8 @@ common__hosts_file: "{{ common__default_hosts_file }}"
 # packages.yaml
 common__packages: "{{ common__default_packages }}"
 common__packages_state: "present"
+common__apt_proxy_file: "{{ common__default_apt_proxy_file }}"
+common__apt_conf_file: "{{ common__default_apt_conf_file }}"
 
 # user.yaml
 common__adminuser_state: "present"

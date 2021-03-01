@@ -31,6 +31,14 @@ Rolle zur Konfiguration allgemeiner Einstellungen:
   common__new_domainname: "newdomain.de"
   ~~~
 
+- `common__apt_proxy`: (*Optional, default auf undefined*)
+
+  Adresse und Port eines APT Caching Proxies, nur HTTP.
+  ~~~yaml
+  # Beispiel:
+  common__apt_proxy: "192.168.1.1:3142"
+  ~~~
+
 - `common__adminuser`: (*Optional*)
 
   Benutzername des Admin-Benutzers.

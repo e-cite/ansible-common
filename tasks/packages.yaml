@@ -1,4 +1,20 @@
 ---
+- name: Setze APT Caching Proxy
+  ansible.builtin.template:
+    src: aptproxy.conf.j2
+    dest: "{{ common__apt_proxy_file }}"
+    owner: root
+    group: root
+    mode: 0644
+  when: ansible_os_family == "Debian" and common__apt_proxy is defined
+
+- name: Entferne alle anderen APT Caching Proxies aus "{{ common__apt_conf_file }}"
+  ansible.builtin.lineinfile:
+    path: "{{ common__apt_conf_file }}"
+    regexp: "^Acquire::http::Proxy"
+    state: absent
+  when: ansible_os_family == "Debian" and common__apt_proxy is defined
+
 - name: Installiere Pakete
   ansible.builtin.package:
     name: "{{ common__packages }}"

@@ -27,6 +27,8 @@ common__default_packages:
   - python
   - python-apt
   - screen
+common__default_apt_proxy_file: "/etc/apt/apt.conf.d/00aptproxy"
+common__default_apt_conf_file: "/etc/apt/apt.conf"
 
 # time.yaml
 common__default_ntpconf_file: "/etc/ntp.conf"
