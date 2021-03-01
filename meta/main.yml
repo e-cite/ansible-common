@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  author: Andreas Dolp
+  description: Common settings for servers (hostname, username, timezone, locales, ntp, unattended-upgrades)
+  company:
+  license: license (MIT)
+
+  min_ansible_version: 2.9
+
+  platforms:
+  - name: Debian
+    versions:
+    - buster
+  - name: Ubuntu
+    versions:
+    - focal
+
+  galaxy_tags:
+    - common
+
+  dependencies:
+    - community.general
+    - ansible.posix

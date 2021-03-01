@@ -1,0 +1,28 @@
+---
+- name: Check /etc/hosts and replace hostnames
+  replace:
+    path: /etc/hosts
+    regexp: "{{ ansible_hostname }}"
+    replace: "{{ new_hostname }}"
+  when:
+    new_hostname is defined and new_domain is defined
+
+- name: Check /etc/hosts and replace domain
+  replace:
+    path: /etc/hosts
+    regexp: "{{ ansible_domain }}"
+    replace: "{{ new_domain }}"
+  when:
+    new_hostname is defined and new_domain is defined
+
+- name: Set hostname
+  hostname:
+    name: "{{ new_hostname }}"
+  when:
+    new_hostname is defined and new_domain is defined
+
+- name: Display reboot notification
+  debug:
+    msg: Please adjust hostname in inventory and reboot manually!
+  when:
+    new_hostname is defined and new_domain is defined

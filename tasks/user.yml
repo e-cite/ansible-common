@@ -1,0 +1,13 @@
+---
+- name: Ensure sudo package is installed
+  apt:
+    name: sudo
+    state: present
+
+- name: Ensure user "{{ adminuser }}" is present and member of sudo group
+  user:
+    name: '{{ adminuser }}'
+    state: present
+    groups: sudo
+    append: yes
+    update_password: on_create

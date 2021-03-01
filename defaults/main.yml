@@ -1,0 +1,6 @@
+---
+adminuser: "ansibleadmin"
+locale: "de_DE.UTF-8"
+timezone: "Europe/Berlin"
+ntp_server: [0.de.pool.ntp.org]
+ntp_server_backup: [pool.ntp.org]

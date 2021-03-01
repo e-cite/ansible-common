@@ -1,0 +1,21 @@
+---
+- name: Set timezone to "{{ timezone }}"
+  community.general.timezone:
+    name: "{{ timezone }}"
+
+- name: Install NTP package
+  apt:
+    name: ntp
+    state: present
+
+- name: Copy the ntp.conf template file, notify handler restart ntp
+  template:
+    src: ntp.conf.j2
+    dest: /etc/ntp.conf
+  notify: restart ntp
+
+- name: Ensure ntp is started an enabled on restart
+  service:
+    name: ntp
+    state: started
+    enabled: yes
