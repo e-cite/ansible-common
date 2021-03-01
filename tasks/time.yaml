@@ -1,21 +1,17 @@
 ---
-- name: Set timezone to "{{ timezone }}"
+- name: Setze Zeitzone auf "{{ common__timezone }}"
   community.general.timezone:
-    name: "{{ timezone }}"
+    name: "{{ common__timezone }}"
+  when: common__timezone is defined
 
-- name: Install NTP package
-  apt:
-    name: ntp
-    state: present
-
-- name: Copy the ntp.conf template file, notify handler restart ntp
-  template:
+- name: Konfiguriere ntp.conf
+  ansible.builtin.template:
     src: ntp.conf.j2
-    dest: /etc/ntp.conf
+    dest: "{{ common__ntpconf_file }}"
   notify: restart ntp
 
-- name: Ensure ntp is started an enabled on restart
-  service:
-    name: ntp
+- name: Aktiviere und starte den NTP-Service
+  ansible.builtin.service:
+    name: "{{ common__service_ntp }}"
     state: started
-    enabled: yes
+    enabled: true

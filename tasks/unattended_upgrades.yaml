@@ -1,11 +1,16 @@
 ---
-- name: Install unattended-upgrades package
-  apt:
-    name: unattended-upgrades
-    state: present
+- name: Konfiguriere unattended-upgrades
+  template:
+    src: auto-upgrades.j2
+    dest: "{{ common__unattended_upgrade_autoupgrades_file }}"
+    owner: root
+    group: root
+    mode: 0644
 
-- name: Activate automatic unattended-upgrades by copying template file
-  copy:
-    src: /usr/share/unattended-upgrades/20auto-upgrades
-    dest: /etc/apt/apt.conf.d/20auto-upgrades
-    remote_src: yes
+- name: create unattended-upgrades configuration
+  template:
+    src: unattended-upgrades.j2
+    dest: "{{ common__unattended_upgrade_upgrades_file }}"
+    owner: root
+    group: root
+    mode: 0644

@@ -1,13 +1,11 @@
 ---
-- name: Ensure sudo package is installed
-  apt:
-    name: sudo
-    state: present
-
-- name: Ensure user "{{ adminuser }}" is present and member of sudo group
-  user:
-    name: '{{ adminuser }}'
-    state: present
-    groups: sudo
-    append: yes
+- name: >
+    Stelle sicher, dass der Benutzer "{{ common__adminuser }}" erstellt und
+    Mitglied der Gruppen "{{ common__adminuser_groups }}" ist
+  ansible.builtin.user:
+    name: '{{ common__adminuser }}'
+    state: "{{ common__adminuser_state }}"
+    groups: "{{ common__adminuser_groups }}"
+    append: true
     update_password: on_create
+  when: common__adminuser is defined

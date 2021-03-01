@@ -15,11 +15,13 @@ filegen clockstats file clockstats type day enable
 
 
 # You do need to talk to an NTP server or two (or three).
-{% for i in ntp_server %}
+{% if common__ntp_servers %}
+{% for i in common__ntp_servers %}
 server {{ i }} iburst
 {% endfor %}
-{% for i in ntp_server_backup %}
-server {{ i }}              # Global server for backup
+{% endif %}
+{% for i in common__ntp_servers_backup %}
+pool {{ i }}              # Global server for backup
 {% endfor %}
 
 # Access control configuration; see /usr/share/doc/ntp-doc/html/accopt.html for

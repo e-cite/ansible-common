@@ -1,40 +1,93 @@
-Role Common
-=========
+# Ansible Rolle "Common"
 
-Common settings for servers (hostname, username, timezone, locales, ntp, unattended-upgrades).
+Rolle zur Konfiguration allgemeiner Einstellungen:
+- hostname
+- packages
+- username
+- locales
+- timezone
+- unattended-upgrades
 
-Requirements
-------------
+## Anforderungen
 
-- Make sure your current user can login to every server by SSH public-private-key.
-- Ensure package `sudo` is installed and current user is member of the `sudo` group.
-- Caution: This role can change the hostnames, so update your inventory accordingly.
+- Achtung: Diese Rolle kann den Hostname ändern. In diesem Fall ist das
+  Inventory manuell anzupassen.
 
-Role Variables
---------------
+## Variablen
 
-- `adminuser`: New or already existing admin user. The role ensures that this user is present on every host.
-- `locale`: Locale, e.g. "de_DE.UTF-8".
-- `timezone`: Timezone, e.g. "Europe/Berlin".
-- `ntp_server`: List of primary NTP servers querried by ntp.
-- `ntp_server_backup`: List of backup NTP servers, querried by ntp when primary NTP servers are not available.
+- `common__new_hostname`: (*Optional, default auf undefined*)
 
-Dependencies
-------------
+  Neuer Hostname, welcher gesetzt werden soll.
+  ~~~yaml
+  # Beispiel:
+  common__new_hostname: "newhost"
+  ~~~
 
-- `community.general`: For setting locale and timezone.
-- `ansible.posix`
+- `common__new_domainname`: (*Optional, default auf undefined*)
 
-Example Playbook
-----------------
+  Neuer Domainname, welcher gesetzt werden soll.
+  ~~~yaml
+  # Beispiel:
+  common__new_domainname: "newdomain.de"
+  ~~~
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+- `common__adminuser`: (*Optional*)
+
+  Benutzername des Admin-Benutzers.
+  ~~~yaml
+  # Beispiel:
+  common__adminuser: "ansibleadmin"
+  ~~~
+
+- `common__adminuser_groups`: (*Optional, default auf undefined*)
+
+  Gruppen des Admin-Benutzers.
+  ~~~yaml
+  # Beispiel:
+  common__adminuser_groups:
+    - sudo
+    - group1
+    - group2
+  ~~~
+
+- `common__locales`: (*Optional, default auf undefined*)
+
+  Setzt die Locales, die auf dem System installiert sind.
+  ~~~yaml
+  # Beispiel:
+  common__locales: "de_DE.UTF-8"
+  ~~~
+
+- `common__timezone`: (*Optional, default auf undefined*)
+
+  Setzt die Zeitzone.
+  ~~~yaml
+  # Beispiel:
+  common__timezone: "Europe/Berlin"
+  ~~~
+
+- `common__ntp_servers`: (*Optional, default auf undefined*)
+
+  Setzt die NTP-Server.
+  ~~~yaml
+  # Beispiel:
+  common__ntp_servers:
+    - 0.de.pool.ntp.org
+    - 1.de.pool.ntp.org
+    - 2.de.pool.ntp.org
+    - 3.de.pool.ntp.org
+  ~~~
+
+## Abhängigkeiten
+
+- `community.general`: Zum Setzen von Locales und Zeitzone.
+
+## Beispiel
 
     - hosts: all
       roles:
         - common
 
-License
--------
+## Lizenz
 
 MIT

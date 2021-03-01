@@ -1,28 +1,34 @@
 ---
-- name: Check /etc/hosts and replace hostnames
-  replace:
-    path: /etc/hosts
+- name: Prüfe hosts-Datei und aktualisiere Hostname
+  ansible.builtin.replace:
+    path: "{{ common__hosts_file }}"
     regexp: "{{ ansible_hostname }}"
-    replace: "{{ new_hostname }}"
+    replace: "{{ common__new_hostname }}"
+  register:
+    common_hostname_changed
   when:
-    new_hostname is defined and new_domain is defined
+    common__new_hostname is defined
 
-- name: Check /etc/hosts and replace domain
-  replace:
-    path: /etc/hosts
+- name: Prüfe hosts-Datei und aktualisiere Domainname
+  ansible.builtin.replace:
+    path: "{{ common__hosts_file }}"
     regexp: "{{ ansible_domain }}"
-    replace: "{{ new_domain }}"
+    replace: "{{ common__new_domainname }}"
+  register:
+    common_domainname_changed
   when:
-    new_hostname is defined and new_domain is defined
+    common__new_domainname is defined
 
-- name: Set hostname
-  hostname:
-    name: "{{ new_hostname }}"
+- name: Aktualisiere Hostname
+  ansible.builtin.hostname:
+    name: "{{ common__new_hostname }}"
+  register:
+    common_hostname_changed
   when:
-    new_hostname is defined and new_domain is defined
+    common__new_hostname is defined
 
-- name: Display reboot notification
-  debug:
-    msg: Please adjust hostname in inventory and reboot manually!
+- name: Hinweis für Neustart
+  ansible.builtin.debug:
+    msg: Bitte den Host oder Domainname anpassen und System neustarten!
   when:
-    new_hostname is defined and new_domain is defined
+    common_hostname_changed.changed or common_domainname_changed.changed

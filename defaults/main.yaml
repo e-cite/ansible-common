@@ -1,6 +1,27 @@
 ---
-adminuser: "ansibleadmin"
-locale: "de_DE.UTF-8"
-timezone: "Europe/Berlin"
-ntp_server: [0.de.pool.ntp.org]
-ntp_server_backup: [pool.ntp.org]
+# hostname.yaml
+common__hosts_file: "{{ common__default_hosts_file }}"
+
+# packages.yaml
+common__packages: "{{ common__default_packages }}"
+common__packages_state: "present"
+
+# user.yaml
+common__adminuser_state: "present"
+common__adminuser_groups: ~
+
+# locales.yaml
+common__locales: ~
+
+# time.yaml
+common__timezone: ~
+common__ntpconf_file: "{{ common__default_ntpconf_file }}"
+common__service_ntp: "{{ common__default_service_ntp }}"
+common__ntp_servers: ~
+common__ntp_servers_backup: "{{ common__default_ntp_servers_backup }}"
+
+# unattended_upgrades.yaml
+common__unattended_upgrade_autoupgrades_file:
+  "{{ common__default_unattended_upgrade_autoupgrades_file }}"
+common__unattended_upgrade_upgrades_file:
+  "{{ common__default_unattended_upgrade_upgrades_file }}"

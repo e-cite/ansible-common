@@ -1,0 +1,5 @@
+---
+- name: Installiere Pakete
+  ansible.builtin.package:
+    name: "{{ common__packages }}"
+    state: "{{ common__packages_state }}"

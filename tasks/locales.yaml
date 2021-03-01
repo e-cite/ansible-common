@@ -1,5 +1,6 @@
 ---
-- name: Set locale to "{{ locale }}"
+- name: Setze locale auf "{{ common__locales }}"
   community.general.locale_gen:
-    name: "{{ locale }}"
-    state: present
+    name: "{{ common__locales }}"
+    state: "present"
+  when: common__locales is defined

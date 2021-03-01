@@ -1,6 +1,11 @@
 ---
-- include: hostname.yml
-- include: user.yml
-- include: locales.yml
-- include: time.yml
-- include: unattended_upgrades.yml
+- name: Include OS vars
+  include_vars:
+    "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yaml"
+
+- include: hostname.yaml
+- include: packages.yaml
+- include: user.yaml
+- include: locales.yaml
+- include: time.yaml
+- include: unattended_upgrades.yaml
