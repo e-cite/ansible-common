@@ -6,7 +6,8 @@
 
 - name: Konfiguriere ntp.conf
   ansible.builtin.template:
-    src: ntp.conf.j2
+    src: "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}/\
+      ntp.conf.j2"
     dest: "{{ common__ntpconf_file }}"
   notify: restart ntp
 

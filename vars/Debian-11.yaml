@@ -22,7 +22,7 @@ common__default_packages:
   - needrestart
   - debsums
   - fail2ban
-  - python
-  - python-apt
+  - python3
+  - python-apt-common
   - screen
   - htop

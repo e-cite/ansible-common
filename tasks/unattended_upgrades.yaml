@@ -1,7 +1,7 @@
 ---
 - name: Konfiguriere unattended-upgrades
   template:
-    src: auto-upgrades.j2
+    src: "{{ ansible_os_family }}/auto-upgrades.j2"
     dest: "{{ common__unattended_upgrade_autoupgrades_file }}"
     owner: root
     group: root
@@ -9,7 +9,8 @@
 
 - name: create unattended-upgrades configuration
   template:
-    src: unattended-upgrades.j2
+    src: "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}/\
+      unattended-upgrades.j2"
     dest: "{{ common__unattended_upgrade_upgrades_file }}"
     owner: root
     group: root

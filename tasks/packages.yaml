@@ -1,7 +1,7 @@
 ---
 - name: Setze APT Caching Proxy
   ansible.builtin.template:
-    src: aptproxy.conf.j2
+    src: "{{ ansible_os_family }}/aptproxy.conf.j2"
     dest: "{{ common__apt_proxy_file }}"
     owner: root
     group: root

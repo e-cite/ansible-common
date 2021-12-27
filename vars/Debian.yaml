@@ -1,0 +1,21 @@
+---
+# hostname.yaml
+common__default_hosts_file: "/etc/hosts"
+
+common__default_apt_proxy_file: "/etc/apt/apt.conf.d/00aptproxy"
+common__default_apt_conf_file: "/etc/apt/apt.conf"
+
+# time.yaml
+common__default_ntpconf_file: "/etc/ntp.conf"
+common__default_service_ntp: "ntp"
+common__default_ntp_servers_backup:
+  - 0.debian.pool.ntp.org
+  - 1.debian.pool.ntp.org
+  - 2.debian.pool.ntp.org
+  - 3.debian.pool.ntp.org
+
+# unattended-upgrades.yaml
+common__default_unattended_upgrade_autoupgrades_file:
+  "/etc/apt/apt.conf.d/20auto-upgrades"
+common__default_unattended_upgrade_upgrades_file:
+  "/etc/apt/apt.conf.d/50unattended-upgrades"
