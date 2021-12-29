@@ -26,3 +26,4 @@ common__default_packages:
   - python-apt-common
   - screen
   - htop
+  - tmux
