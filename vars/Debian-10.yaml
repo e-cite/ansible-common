@@ -20,7 +20,6 @@ common__default_packages:
   - rsyslog
   - debian-goodies
   - needrestart
-  - iucode-tool
   - debsums
   - fail2ban
   - python
