@@ -8,6 +8,8 @@
 - ansible.builtin.include_tasks:
     file: hostname.yaml
 - ansible.builtin.include_tasks:
+    file: apt.yaml
+- ansible.builtin.include_tasks:
     file: packages.yaml
 - ansible.builtin.include_tasks:
     file: user.yaml

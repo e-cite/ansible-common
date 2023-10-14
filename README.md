@@ -2,6 +2,7 @@
 
 Rolle zur Konfiguration allgemeiner Einstellungen:
 - hostname
+- apt
 - packages
 - username
 - locales

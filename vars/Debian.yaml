@@ -2,6 +2,7 @@
 # hostname.yaml
 common__default_hosts_file: "/etc/hosts"
 
+# apt.yaml
 common__default_apt_proxy_file: "/etc/apt/apt.conf.d/00aptproxy"
 common__default_apt_conf_file: "/etc/apt/apt.conf"
 

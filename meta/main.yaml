@@ -2,7 +2,7 @@
 galaxy_info:
   author: Andreas Dolp
   description: Rolle zur Konfiguration allgemeiner Einstellungen
-    (hostname, packages, user, locales, time, unattended-upgrades)
+    (hostname, apt, packages, user, locales, time, unattended-upgrades)
   company: -/-
   license: MIT
 
