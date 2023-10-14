@@ -1,4 +1,31 @@
 ---
+# apt.yaml
+common__default_apt_debian_sources:
+  - suite: bullseye
+    url: "{{ common__apt_debian_source_url }}"
+    components: main contrib non-free
+    type: deb
+  - suite: bullseye
+    url: "{{ common__apt_debian_source_url }}"
+    components: main contrib non-free
+    type: deb-src
+  - suite: bullseye-updates
+    url: "{{ common__apt_debian_source_url }}"
+    components: main contrib non-free
+    type: deb
+  - suite: bullseye-updates
+    url: "{{ common__apt_debian_source_url }}"
+    components: main contrib non-free
+    type: deb-src
+  - suite: bullseye-security
+    url: "{{ common__apt_debian_source_security_url }}"
+    components: main contrib non-free
+    type: deb
+  - suite: bullseye-security
+    url: "{{ common__apt_debian_source_security_url }}"
+    components: main contrib non-free
+    type: deb-src
+
 # packages.yaml
 common__default_packages:
   - sudo

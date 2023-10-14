@@ -1,4 +1,15 @@
 ---
+- name: Konfiguriere APT Debian sources.list
+  ansible.builtin.template:
+    src: "templates/Debian/sources.list.j2"
+    dest: "{{ common__apt_sources_list_file }}"
+    owner: root
+    group: root
+    mode: 0644
+  vars:
+    sources_list: "{{ common__apt_debian_sources }}"
+  when: common__apt_debian_sources is defined
+
 - name: Setze APT Caching Proxy
   ansible.builtin.template:
     src: "{{ ansible_os_family }}/aptproxy.conf.j2"
@@ -6,11 +17,11 @@
     owner: root
     group: root
     mode: 0644
-  when: ansible_os_family == "Debian" and common__apt_proxy is defined
+  when: common__apt_proxy is defined
 
 - name: Entferne alle anderen APT Caching Proxies aus "{{ common__apt_conf_file }}"
   ansible.builtin.lineinfile:
     path: "{{ common__apt_conf_file }}"
     regexp: "^Acquire::http::Proxy"
     state: absent
-  when: ansible_os_family == "Debian" and common__apt_proxy is defined
+  when: common__apt_proxy is defined

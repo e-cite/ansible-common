@@ -32,6 +32,22 @@ Rolle zur Konfiguration allgemeiner Einstellungen:
   common__new_domainname: "newdomain.de"
   ~~~
 
+- `common__apt_debian_source_url`: (*Optional, default auf Debian CDN*)
+
+  URL eines Debian APT-Repository Servers.
+  ~~~yaml
+  # Beispiel:
+  common__apt_debian_source_url: "http://deb.debian.org/debian"
+  ~~~
+
+- `common__apt_debian_source_security_url`: (*Optional, default auf Debian Security*)
+
+  URL eines Debian APT-Repository Security-Servers.
+  ~~~yaml
+  # Beispiel:
+  common__apt_debian_source_security_url: "http://security.debian.org/debian-security"
+  ~~~
+
 - `common__apt_proxy`: (*Optional, default auf undefined*)
 
   Adresse und Port eines APT Caching Proxies, nur HTTP.

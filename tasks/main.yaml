@@ -9,6 +9,7 @@
     file: hostname.yaml
 - ansible.builtin.include_tasks:
     file: apt.yaml
+  when: ansible_os_family == "Debian"
 - ansible.builtin.include_tasks:
     file: packages.yaml
 - ansible.builtin.include_tasks:

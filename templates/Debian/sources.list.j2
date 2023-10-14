@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+{% for source in sources_list %}
+{% if source.name is defined %}
+# {{ source.name }}
+{% endif %}
+{% if source.options is defined %}
+{{ source.type }} [{{ source.options }}] {{ source.url }} {{ source.suite }} {{ source.components }}
+{% else %}
+{{ source.type }} {{ source.url }} {{ source.suite }} {{ source.components }}
+{% endif %}
+{% endfor %}

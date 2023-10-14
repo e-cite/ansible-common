@@ -3,6 +3,10 @@
 common__hosts_file: "{{ common__default_hosts_file }}"
 
 # apt.yaml
+common__apt_sources_list_file: "{{ common__default_apt_sources_list_file }}"
+common__apt_debian_source_url: "{{ common__default_apt_debian_source_url }}"
+common__apt_debian_source_security_url: "{{ common__default_apt_debian_source_security_url }}"
+common__apt_debian_sources: "{{ common__default_apt_debian_sources }}"
 common__apt_proxy_file: "{{ common__default_apt_proxy_file }}"
 common__apt_conf_file: "{{ common__default_apt_conf_file }}"
 
