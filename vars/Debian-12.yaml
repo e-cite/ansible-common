@@ -1,0 +1,56 @@
+---
+# apt.yaml
+common__default_apt_debian_sources:
+  - suite: bookworm
+    url: "{{ common__apt_debian_source_url }}"
+    components: main contrib non-free non-free-firmware
+    type: deb
+  - suite: bookworm
+    url: "{{ common__apt_debian_source_url }}"
+    components: main contrib non-free non-free-firmware
+    type: deb-src
+  - suite: bookworm-updates
+    url: "{{ common__apt_debian_source_url }}"
+    components: main contrib non-free non-free non-free-firmware
+    type: deb
+  - suite: bookworm-updates
+    url: "{{ common__apt_debian_source_url }}"
+    components: main contrib non-free non-free-firmware
+    type: deb-src
+  - suite: bookworm-security
+    url: "{{ common__apt_debian_source_security_url }}"
+    components: main contrib non-free non-free-firmware
+    type: deb
+  - suite: bookworm-security
+    url: "{{ common__apt_debian_source_security_url }}"
+    components: main contrib non-free non-free-firmware
+    type: deb-src
+
+# packages.yaml
+common__default_packages:
+  - sudo
+  - ntp
+  - unattended-upgrades
+  - apticron
+  - vim
+  - less
+  - ssh
+  - iputils-ping
+  - dnsutils
+  - resolvconf
+  - iftop
+  - iotop
+  - ethtool
+  - tcpdump
+  - curl
+  - wget
+  - rsyslog
+  - debian-goodies
+  - needrestart
+  - debsums
+  - fail2ban
+  - python3
+  - python-apt-common
+  - screen
+  - htop
+  - tmux
