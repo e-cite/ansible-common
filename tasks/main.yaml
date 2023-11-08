@@ -1,14 +1,17 @@
 ---
 - ansible.builtin.include_vars:
     "{{ ansible_os_family }}.yaml"
+  tags: dist_upgrade
 
 - ansible.builtin.include_vars:
     "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yaml"
+  tags: dist_upgrade
 
 - ansible.builtin.include_tasks:
     file: hostname.yaml
 - ansible.builtin.include_tasks:
     file: apt.yaml
+  tags: dist_upgrade
   when: ansible_os_family == "Debian"
 - ansible.builtin.include_tasks:
     file: packages.yaml

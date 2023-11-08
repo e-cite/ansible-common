@@ -9,6 +9,7 @@
   vars:
     sources_list: "{{ common__apt_debian_sources }}"
   when: common__apt_debian_sources is defined
+  tags: dist_upgrade
 
 - name: Setze APT Caching Proxy
   ansible.builtin.template:
