@@ -15,3 +15,5 @@
     owner: root
     group: root
     mode: 0644
+  vars:
+    package_blacklist: "{{ common__unattended_upgrade_package_blacklist | default([]) }}"

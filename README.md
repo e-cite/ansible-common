@@ -103,6 +103,17 @@ Rolle zur Konfiguration allgemeiner Einstellungen:
     - 3.de.pool.ntp.org
   ~~~
 
+- `common__unattended_upgrade_package_blacklist`: (*Optional, default auf []*)
+
+  Definiert eine Liste mit Paketen, die von unattended-upgrades ausgeschlossen
+  werden sollen.
+  ~~~yaml
+  # Beispiel:
+  common__unattended_upgrade_package_blacklist:
+    - linux-
+    - unattended-upgrades
+  ~~~
+
 ## Abhängigkeiten
 
 - `community.general`: Zum Setzen von Locales und Zeitzone.

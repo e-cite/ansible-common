@@ -6,5 +6,8 @@ Unattended-Upgrade::Origins-Pattern {
 };
 
 Unattended-Upgrade::Package-Blacklist {
+{% for package in package_blacklist %}
+    "{{ package }}";
+{% endfor %}
 };
 

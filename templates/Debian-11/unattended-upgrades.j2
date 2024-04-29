@@ -45,6 +45,9 @@ Unattended-Upgrade::Origins-Pattern {
 
 // Python regular expressions, matching packages to exclude from upgrading
 Unattended-Upgrade::Package-Blacklist {
+{% for package in package_blacklist %}
+    "{{ package }}";
+{% endfor %}
     // The following matches all packages starting with linux-
 //  "linux-";
 
