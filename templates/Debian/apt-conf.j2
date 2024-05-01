@@ -1,0 +1,13 @@
+// {{ ansible_managed }}
+{% for option_key, option_value in options.items() %}
+{% if option_value is string or option_value is number %}
+{{ option_key }} "{{ option_value}}";
+{% else %}
+{{ option_key }} {
+{% for item in option_value %}
+  "{{ item }}";
+{% endfor %}
+};
+{% endif %}
+{% endfor %}
+

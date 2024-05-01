@@ -21,5 +21,4 @@
     file: locales.yaml
 - ansible.builtin.include_tasks:
     file: time.yaml
-- ansible.builtin.include_tasks:
-    file: unattended_upgrades.yaml
+

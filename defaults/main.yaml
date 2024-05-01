@@ -7,8 +7,15 @@ common__apt_sources_list_file: "{{ common__default_apt_sources_list_file }}"
 common__apt_debian_source_url: "{{ common__default_apt_debian_source_url }}"
 common__apt_debian_source_security_url: "{{ common__default_apt_debian_source_security_url }}"
 common__apt_debian_sources: "{{ common__default_apt_debian_sources }}"
-common__apt_proxy_file: "{{ common__default_apt_proxy_file }}"
 common__apt_conf_file: "{{ common__default_apt_conf_file }}"
+common__apt_conf_folder: "{{ common__default_apt_conf_folder }}"
+common__apt_config_options_overrides: {}
+common__apt_config_options:
+  "{{ common__default_apt_config_options_general | combine(
+    common__default_apt_config_options_specific,
+    common__apt_config_options_overrides,
+    recursive=True)
+  }}"
 
 # packages.yaml
 common__packages: "{{ common__default_packages }}"
@@ -28,8 +35,3 @@ common__service_ntp: "{{ common__default_service_ntp }}"
 common__ntp_servers: ~
 common__ntp_servers_backup: "{{ common__default_ntp_servers_backup }}"
 
-# unattended_upgrades.yaml
-common__unattended_upgrade_autoupgrades_file:
-  "{{ common__default_unattended_upgrade_autoupgrades_file }}"
-common__unattended_upgrade_upgrades_file:
-  "{{ common__default_unattended_upgrade_upgrades_file }}"

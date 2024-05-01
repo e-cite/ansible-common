@@ -6,8 +6,18 @@ common__default_hosts_file: "/etc/hosts"
 common__default_apt_sources_list_file: "/etc/apt/sources.list"
 common__default_apt_debian_source_url: "http://deb.debian.org/debian"
 common__default_apt_debian_source_security_url: "http://security.debian.org/debian-security"
-common__default_apt_proxy_file: "/etc/apt/apt.conf.d/00aptproxy"
 common__default_apt_conf_file: "/etc/apt/apt.conf"
+common__default_apt_conf_folder: "/etc/apt/apt.conf.d/"
+common__default_apt_config_options_general:
+  20auto-upgrades:
+    APT::Periodic::Update-Package-Lists: 1
+    APT::Periodic::Unattended-Upgrade: 1
+    APT::Periodic::Download-Upgradeable-Packages: 1
+    APT::Periodic::AutocleanInterval: 1
+  50unattended-upgrades:
+    Unattended-Upgrade::Automatic-Reboot: false
+    Unattended-Upgrade::Automatic-Reboot-WithUsers: false
+    Unattended-Upgrade::Automatic-Reboot-Time: "06:50"
 
 # time.yaml
 common__default_ntpconf_file: "/etc/ntp.conf"
@@ -18,8 +28,3 @@ common__default_ntp_servers_backup:
   - 2.debian.pool.ntp.org
   - 3.debian.pool.ntp.org
 
-# unattended-upgrades.yaml
-common__default_unattended_upgrade_autoupgrades_file:
-  "/etc/apt/apt.conf.d/20auto-upgrades"
-common__default_unattended_upgrade_upgrades_file:
-  "/etc/apt/apt.conf.d/50unattended-upgrades"

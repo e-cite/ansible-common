@@ -11,18 +11,14 @@
   when: common__apt_debian_sources is defined
   tags: dist_upgrade
 
-- name: Setze APT Caching Proxy
-  ansible.builtin.template:
-    src: "{{ ansible_os_family }}/aptproxy.conf.j2"
-    dest: "{{ common__apt_proxy_file }}"
+- name: Erstelle APT Konfigurations-Datei
+  template:
+    src: "{{ ansible_os_family }}/apt-conf.j2"
+    dest: "{{ common__apt_conf_folder | dirname }}/{{ item.key }}"
     owner: root
     group: root
     mode: 0644
-  when: common__apt_proxy is defined
+  vars:
+    options: "{{ item.value }}"
+  loop: "{{ common__apt_config_options | dict2items }}"
 
-- name: Entferne alle anderen APT Caching Proxies aus "{{ common__apt_conf_file }}"
-  ansible.builtin.lineinfile:
-    path: "{{ common__apt_conf_file }}"
-    regexp: "^Acquire::http::Proxy"
-    state: absent
-  when: common__apt_proxy is defined

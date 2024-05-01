@@ -7,7 +7,6 @@ Rolle zur Konfiguration allgemeiner Einstellungen:
 - username
 - locales
 - timezone
-- unattended-upgrades
 
 ## Anforderungen
 
@@ -48,12 +47,17 @@ Rolle zur Konfiguration allgemeiner Einstellungen:
   common__apt_debian_source_security_url: "http://security.debian.org/debian-security"
   ~~~
 
-- `common__apt_proxy`: (*Optional, default auf undefined*)
+- `common__apt_config_options_overrides`: (*Optional, default auf {}*)
 
-  Adresse und Port eines APT Caching Proxies, nur HTTP.
+  Ermöglicht das Erstellen, Einfügen und Überschreiben von Optionen in spezifischen
+  APT-Konfigurationsdateien unter /etc/apt/apt.conf.d/<filename>.
+  Der Dict wird rekursiv gemerged, wobei bereits vorhandene Werte überschrieben werden.
   ~~~yaml
-  # Beispiel:
-  common__apt_proxy: "192.168.1.1:3142"
+  # Beispiel: Überschreibe die Default-Option für den automatischen Reboot bei
+  # unattended-upgrades (default: false) in der Datei /etc/apt/apt.conf.d/50unattended-upgrades
+  common__apt_config_options_overrides:
+    50unattended-upgrades:
+      Unattended-Upgrade::Automatic-Reboot: true
   ~~~
 
 - `common__adminuser`: (*Optional*)
@@ -101,17 +105,6 @@ Rolle zur Konfiguration allgemeiner Einstellungen:
     - 1.de.pool.ntp.org
     - 2.de.pool.ntp.org
     - 3.de.pool.ntp.org
-  ~~~
-
-- `common__unattended_upgrade_package_blacklist`: (*Optional, default auf []*)
-
-  Definiert eine Liste mit Paketen, die von unattended-upgrades ausgeschlossen
-  werden sollen.
-  ~~~yaml
-  # Beispiel:
-  common__unattended_upgrade_package_blacklist:
-    - linux-
-    - unattended-upgrades
   ~~~
 
 ## Abhängigkeiten
