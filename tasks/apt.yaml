@@ -21,4 +21,4 @@
   vars:
     options: "{{ item.value }}"
   loop: "{{ common__apt_config_options | dict2items }}"
-
+...
