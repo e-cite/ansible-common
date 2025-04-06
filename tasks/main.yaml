@@ -21,4 +21,6 @@
     file: locales.yaml
 - ansible.builtin.include_tasks:
     file: time.yaml
+- ansible.builtin.include_tasks:
+    file: fail2ban.yaml
 

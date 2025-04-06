@@ -28,3 +28,7 @@ common__default_ntp_servers_backup:
   - 2.debian.pool.ntp.org
   - 3.debian.pool.ntp.org
 
+# fail2ban.yaml
+common__default_f2b_folder: "/etc/fail2ban"
+common__default_f2b_servicename: fail2ban
+...

@@ -3,3 +3,8 @@
   ansible.builtin.service:
     name: "{{ common__service_ntp }}"
     state: restarted
+- name: restart fail2ban
+  ansible.builtin.service:
+    name: "{{ common__f2b_servicename }}"
+    state: restarted
+...

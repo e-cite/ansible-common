@@ -7,6 +7,7 @@ Rolle zur Konfiguration allgemeiner Einstellungen:
 - username
 - locales
 - timezone
+- fail2ban
 
 ## Anforderungen
 
@@ -107,6 +108,25 @@ Rolle zur Konfiguration allgemeiner Einstellungen:
     - 3.de.pool.ntp.org
   ~~~
 
+- `common__f2b_config`: (*Optional, default auf {}*)
+
+  Konfiguriert beliebige fail2ban Konfigurationsdateien unterhalb von `/etc/fail2ban/`.
+
+  In typischer Ansible-Manier werden keine Dateien gelöscht, wenn diese aus der Config
+  ausgetragen werden.
+  ~~~yaml
+  # Beispiel:
+  common__f2b_config:
+    jail.d/99_ansible.conf:
+      DEFAULT:
+        banaction: nftables-multiport
+        banaction_allports: nftables-allports
+      sshd:
+        enabled: true
+    <Dateipfad unterhalb /etc/fail2ban/>:
+      <SEKTION>:
+        <Parameter>: <Wert>
+  ~~~
 ## Abhängigkeiten
 
 - `community.general`: Zum Setzen von Locales und Zeitzone.

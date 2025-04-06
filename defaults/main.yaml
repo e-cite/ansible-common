@@ -35,3 +35,8 @@ common__service_ntp: "{{ common__default_service_ntp }}"
 common__ntp_servers: ~
 common__ntp_servers_backup: "{{ common__default_ntp_servers_backup }}"
 
+# fail2ban.yaml
+common__f2b_config: {}
+common__f2b_folder: "{{ common__default_f2b_folder }}"
+common__f2b_servicename: "{{ common__default_f2b_servicename }}"
+...

@@ -1,0 +1,12 @@
+# {{ ansible_managed }}
+{% for key,value in __content.items() %}
+
+[{{ key }}]
+{%   for subkey,subvalue in value.items() %}
+{%     if subvalue is boolean %}
+{%       set subvalue = subvalue | lower %}
+{%     endif %}
+{{ subkey }} = {{ subvalue }}
+{%   endfor %}
+{% endfor %}
+
