@@ -36,7 +36,6 @@ common__default_packages:
   - sudo
   - ntp
   - unattended-upgrades
-  - apticron
   - vim
   - less
   - ssh
@@ -50,12 +49,10 @@ common__default_packages:
   - curl
   - wget
   - rsyslog
-  - debian-goodies
   - needrestart
-  - debsums
   - fail2ban
-  - python
-  - python-apt
+  - python  # For ansible
+  - python-apt  # For ansible check-mode
   - screen
   - htop
   - tmux
