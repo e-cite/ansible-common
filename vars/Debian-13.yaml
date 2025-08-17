@@ -1,0 +1,62 @@
+---
+# apt.yaml
+common__default_apt_debian_sources:
+  - suite: trixie
+    url: "{{ common__apt_debian_source_url }}"
+    components: main contrib non-free non-free-firmware
+    type: deb
+  - suite: trixie
+    url: "{{ common__apt_debian_source_url }}"
+    components: main contrib non-free non-free-firmware
+    type: deb-src
+  - suite: trixie-updates
+    url: "{{ common__apt_debian_source_url }}"
+    components: main contrib non-free non-free non-free-firmware
+    type: deb
+  - suite: trixie-updates
+    url: "{{ common__apt_debian_source_url }}"
+    components: main contrib non-free non-free-firmware
+    type: deb-src
+  - suite: trixie-security
+    url: "{{ common__apt_debian_source_security_url }}"
+    components: main contrib non-free non-free-firmware
+    type: deb
+  - suite: trixie-security
+    url: "{{ common__apt_debian_source_security_url }}"
+    components: main contrib non-free non-free-firmware
+    type: deb-src
+common__default_apt_config_options_specific:
+  50unattended-upgrades:
+    Unattended-Upgrade::Origins-Pattern:
+      - "origin=Debian,codename=${distro_codename},label=Debian"
+      - "origin=Debian,codename=${distro_codename},label=Debian-Security"
+      - "origin=Debian,codename=${distro_codename}-security,label=Debian-Security"
+
+# packages.yaml
+common__default_packages:
+  - sudo
+  - ntpsec
+  - unattended-upgrades
+  - apticron
+  - vim
+  - less
+  - ssh
+  - iputils-ping
+  - bind9-dnsutils
+  - resolvconf
+  - iftop
+  - iotop
+  - ethtool
+  - tcpdump
+  - curl
+  - wget
+  - rsyslog
+  - debian-goodies
+  - needrestart
+  - debsums
+  - fail2ban
+  - python3
+  - python-apt-common
+  - screen
+  - htop
+  - tmux
