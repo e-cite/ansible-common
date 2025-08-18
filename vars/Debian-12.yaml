@@ -41,7 +41,6 @@ common__default_packages:
   - ssh
   - iputils-ping
   - dnsutils
-  - resolvconf
   - iftop
   - iotop
   - ethtool
