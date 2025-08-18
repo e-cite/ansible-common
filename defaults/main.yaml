@@ -30,10 +30,42 @@ common__locales: ~
 
 # time.yaml
 common__timezone: ~
-common__ntpconf_file: "{{ common__default_ntpconf_file }}"
-common__service_ntp: "{{ common__default_service_ntp }}"
-common__ntp_servers: ~
-common__ntp_servers_backup: "{{ common__default_ntp_servers_backup }}"
+common__ntp_type: ntpsec
+common__ntp_packages:
+  ntpsec:
+    to_install: ntpsec
+    to_purge:
+      - ntp
+      - systemd-timesyncd
+  systemd-timesyncd:
+    to_install: systemd-timesyncd
+    to_purge:
+      - ntp
+      - ntpsec
+common__ntp_conffiles:
+  ntpsec:
+    src: "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}/\
+      ntp.conf.j2"
+    dest: /etc/ntpsec/ntp.conf
+    to_purge:
+      - /etc/ntp.conf
+      - /etc/systemd/timesyncd.conf
+      - /etc/systemd/timesyncd.conf.d
+  systemd-timesyncd:
+    src: timesyncd.conf.j2
+    dest: /etc/systemd/timesyncd.conf.d/ansible.conf
+    to_purge:
+      - /etc/ntp.conf
+      - /etc/ntpsec
+common__ntp_service:
+  ntpsec: ntpsec.service
+  systemd-timesyncd: systemd-timesyncd.service
+common__ntp_servers: []
+common__ntp_servers_backup:
+  - 0.debian.pool.ntp.org
+  - 1.debian.pool.ntp.org
+  - 2.debian.pool.ntp.org
+  - 3.debian.pool.ntp.org
 
 # fail2ban.yaml
 common__f2b_config: {}

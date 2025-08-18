@@ -1,0 +1,17 @@
+# {{ ansible_managed }}
+{% macro print_space_separated_list(list) %}
+{% for i in list %}
+{{ i }}{{ " " if not loop.last }}
+{%- endfor %}
+{% endmacro %}
+{% for section_key,section_value in __content.items() %}
+
+[{{ section_key }}]
+{%   for key,value in section_value.items() %}
+{%     if value is string or value is integer %}
+{{ key }}={{ value }}
+{%     elif value is sequence and value is not mapping and value is not string %}
+{{ key }}={{ print_space_separated_list(value) }}
+{%     endif %}
+{%   endfor %}
+{% endfor %}

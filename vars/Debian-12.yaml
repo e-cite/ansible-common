@@ -35,7 +35,6 @@ common__default_apt_config_options_specific:
 # packages.yaml
 common__default_packages:
   - sudo
-  - ntp
   - unattended-upgrades
   - vim
   - less

@@ -4,15 +4,42 @@
     name: "{{ common__timezone }}"
   when: common__timezone is defined
 
-- name: Konfiguriere ntp.conf
+- name: Installiere/Deinstalliere Pakete für NTP
+  ansible.builtin.apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+    purge: "{{ item.purge | default(false) }}"
+  loop:  # First uninstall to prevent any conflicting packages
+    - name: "{{ common__ntp_packages[common__ntp_type].to_purge }}"
+      state: absent
+      purge: true
+    - name: "{{ common__ntp_packages[common__ntp_type].to_install }}"
+      state: present
+
+- name: Stelle sicher, dass alle Ordner angelegt sind
+  ansible.builtin.file:
+    path: "{{ common__ntp_conffiles[common__ntp_type].dest | dirname }}"
+    state: directory
+
+- name: Konfiguriere NTP-Dienst
   ansible.builtin.template:
-    src: "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}/\
-      ntp.conf.j2"
-    dest: "{{ common__ntpconf_file }}"
+    src: "{{ common__ntp_conffiles[common__ntp_type].src }}"
+    dest: "{{ common__ntp_conffiles[common__ntp_type].dest }}"
   notify: restart ntp
+  vars:
+    __content:  # only required for the systemd-timesycnd template
+      Time:
+        NTP: "{{ common__ntp_servers }}"
+        FallbackNTP: "{{ common__ntp_servers_backup }}"
+
+- name: Entferne nicht benötigte NTP-Konfigurationsdateien
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop: "{{ common__ntp_conffiles[common__ntp_type].to_purge }}"
 
 - name: Aktiviere und starte den NTP-Service
   ansible.builtin.service:
-    name: "{{ common__service_ntp }}"
+    name: "{{ common__ntp_service[common__ntp_type] }}"
     state: started
     enabled: true

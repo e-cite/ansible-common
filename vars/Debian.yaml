@@ -19,15 +19,6 @@ common__default_apt_config_options_general:
     Unattended-Upgrade::Automatic-Reboot-WithUsers: false
     Unattended-Upgrade::Automatic-Reboot-Time: "06:50"
 
-# time.yaml
-common__default_ntpconf_file: "/etc/ntp.conf"
-common__default_service_ntp: "ntp"
-common__default_ntp_servers_backup:
-  - 0.debian.pool.ntp.org
-  - 1.debian.pool.ntp.org
-  - 2.debian.pool.ntp.org
-  - 3.debian.pool.ntp.org
-
 # fail2ban.yaml
 common__default_f2b_folder: "/etc/fail2ban"
 common__default_f2b_servicename: fail2ban

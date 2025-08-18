@@ -96,9 +96,17 @@ Rolle zur Konfiguration allgemeiner Einstellungen:
   common__timezone: "Europe/Berlin"
   ~~~
 
-- `common__ntp_servers`: (*Optional, default auf undefined*)
+- `common__ntp_type`: (*Optional, default auf ntpsec*)
 
-  Setzt die NTP-Server.
+  Ermöglicht die Änderung des NTP-Dienstes zwischen entweder 'ntpsec' oder 'systemd-timesyncd'.
+  ~~~yaml
+  # Beispiel:
+  common__ntp_type: systemd-timesyncd
+  ~~~
+
+- `common__ntp_servers`: (*Optional, default auf leere Liste*)
+
+  Setzt die primären NTP-Server.
   ~~~yaml
   # Beispiel:
   common__ntp_servers:
@@ -106,6 +114,18 @@ Rolle zur Konfiguration allgemeiner Einstellungen:
     - 1.de.pool.ntp.org
     - 2.de.pool.ntp.org
     - 3.de.pool.ntp.org
+  ~~~
+
+- `common__ntp_servers_backup`: (*Optional, default siehe Beispiel*)
+
+  Setzt die Backup-/Fallback-NTP-Server.
+  ~~~yaml
+  # Beispiel:
+  common__ntp_servers_backup:
+    - 0.debian.pool.ntp.org
+    - 1.debian.pool.ntp.org
+    - 2.debian.pool.ntp.org
+    - 3.debian.pool.ntp.org
   ~~~
 
 - `common__f2b_config`: (*Optional, default auf {}*)

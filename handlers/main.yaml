@@ -1,7 +1,7 @@
 ---
 - name: restart ntp
   ansible.builtin.service:
-    name: "{{ common__service_ntp }}"
+    name: "{{ common__ntp_service[common__ntp_type] }}"
     state: restarted
 - name: restart fail2ban
   ansible.builtin.service:
